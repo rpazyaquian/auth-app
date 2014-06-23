@@ -1,0 +1,22 @@
+$('#stocks').empty().append("<%= j render('echo') %>");
+
+<% @valid_stocks.each do |stock| %>
+	new Morris.Line({
+	  // ID of the element in which to draw the chart.
+	  element: '<%= stock %>',
+	  // Chart data records -- each entry in this array corresponds to a point on
+	  // the chart.
+	  data: $('#<%= stock %>').data('value'),
+	  // The name of the data record attribute that contains x-prices.
+	  xkey: 'Date',
+	  // A list of names of data record attributes that contain y-prices.
+	  ykeys: ['Close', 'SMA50', 'SMA200'],
+	  // Labels for the ykeys -- will be displayed when you hover over the
+	  // chart.
+	  labels: ['Close', 'SMA50', 'SMA200'],
+	  // Size of data points on chart.
+	  pointSize: 0,
+	  ymax: 'auto',
+	  ymin: 'auto'
+	});
+<% end %>

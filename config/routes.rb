@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   match 'login', to: 'sessions#new', via: 'get'
   match 'logout', to: 'sessions#destroy', via: 'get'
 
+  match 'stocks', to: 'stocks#index', via: 'get'
+  match 'lookup', to: 'stocks#lookup', via: 'get'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

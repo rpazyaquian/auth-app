@@ -1,0 +1,10 @@
+<% @stocks_data.each do |key, value| %>
+	<% if not value.key?(:message) %>
+	<h1><%= key %></h1>
+	<%= content_tag(:div, "", id: key, data: {value: value[:data]}) %>
+	<% else %>
+	<h1><%= key %></h1>
+	<h2><%= value[:message] %></h2>
+	<p>That, or something went wrong trying to get its data. Maybe there are no results for the date range you specified?</p>
+	<% end %>
+<% end %>
