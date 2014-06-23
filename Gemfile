@@ -41,3 +41,4 @@ gem 'bcrypt', '~> 3.1.7'
 
 # ADDED
 gem 'stock_quote'
+gem 'validates_timeliness'

@@ -11,7 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140623145828) do
+ActiveRecord::Schema.define(version: 20140623195309) do
+
+  create_table "job_apps", force: true do |t|
+    t.string   "title"
+    t.string   "description"
+    t.string   "company"
+    t.date     "submission_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+  end
+
+  add_index "job_apps", ["user_id"], name: "index_job_apps_on_user_id"
+
+  create_table "stock_searches", force: true do |t|
+    t.string   "symbol"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email"

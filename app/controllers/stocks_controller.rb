@@ -1,18 +1,22 @@
 class StocksController < ApplicationController
 
 	def index
-		puts session[:session_id]
+		@form = StockSearch.new
 	end
 
 	def lookup
+
+		@form = StockSearch.new(params[:stock_search])
+
 		respond_to do |format|
 
 			format.html {}
 
 			format.js do
+
 				@stocks_data = {}
 				@valid_stocks = []
-				@stocks = params[:symbol].upcase.gsub(/\s+/, "").split(',')
+				@stocks = params[:stock_search][:symbol].upcase.gsub(/\s+/, "").split(',')
 
 				@stocks.each do |symbol|
 
@@ -20,7 +24,7 @@ class StocksController < ApplicationController
 
 						query = StockQuote::Stock.quote(symbol)
 
-						history_data = StockQuote::Stock.json_history(symbol, start_date = params[:start_date], end_date = params[:end_date], ['Date', 'Close'])
+						history_data = StockQuote::Stock.json_history(symbol, start_date = params[:stock_search][:start_date], end_date = params[:stock_search][:end_date], ['Date', 'Close'])
 
 						stock_data = history_data['quote'].sort_by! { |k| k['Date'] }
 
@@ -39,6 +43,7 @@ class StocksController < ApplicationController
 
 			end
 		end
+
 	end
 
 	private

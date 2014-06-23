@@ -1,0 +1,7 @@
+<% # this is the list of all job apps associated with the current user %>
+
+<% @list.each do |app| %>
+	<%= link_to app.title, app %>
+	<%= app.company %>
+	<%= app.submission_date %>
+<% end %>

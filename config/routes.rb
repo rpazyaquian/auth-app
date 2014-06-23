@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :users
   resources :sessions
+  resources :job_apps
 
   root 'users#new'
 
@@ -10,6 +11,9 @@ Rails.application.routes.draw do
 
   match 'stocks', to: 'stocks#index', via: 'get'
   match 'lookup', to: 'stocks#lookup', via: 'get'
+
+  match 'apptracker', to: 'job_apps#index', via: 'get'
+  match 'newapp', to: 'job_apps#new', via: 'get'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
